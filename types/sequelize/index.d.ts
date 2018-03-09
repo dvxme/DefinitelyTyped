@@ -4073,29 +4073,29 @@ declare namespace sequelize {
 
     }
 
-    interface AddUniqueConstraintOptions {
+    interface AddUniqueConstraintOptions extends QueryInterfaceOptions {
         type: 'unique';
         name?: string;
     }
 
-    interface AddDefaultConstraintOptions {
+    interface AddDefaultConstraintOptions extends QueryInterfaceOptions {
         type: 'default';
         name?: string;
         defaultValue?: any;
     }
 
-    interface AddCheckConstraintOptions {
+    interface AddCheckConstraintOptions extends QueryInterfaceOptions {
         type: 'check';
         name?: string;
         where?: AnyWhereOptions;
     }
 
-    interface AddPrimaryKeyConstraintOptions {
+    interface AddPrimaryKeyConstraintOptions extends QueryInterfaceOptions {
         type: 'primary key';
         name?: string;
     }
 
-    interface AddForeignKeyConstraintOptions {
+    interface AddForeignKeyConstraintOptions extends QueryInterfaceOptions {
         type: 'foreign key';
         name?: string;
         references?: {
@@ -4263,7 +4263,7 @@ declare namespace sequelize {
         /**
          * Adds constraints to a table
          */
-        addConstraint(tableName: string, attributes: string[], options?: AddConstraintOptions | QueryInterfaceOptions): Promise<void>;
+        addConstraint(tableName: string, attributes: string[], options?: AddConstraintOptions): Promise<void>;
 
         /**
          * Removes constraints from a table
@@ -4886,7 +4886,7 @@ declare namespace sequelize {
 
     }
 
-    interface DefineIndexOptions {
+    interface DefineIndexOptions extends QueryInterfaceOptions {
         /**
          * The index type
          */
@@ -4906,11 +4906,6 @@ declare namespace sequelize {
          * Set a type for the index, e.g. BTREE. See the documentation of the used dialect
          */
         indexType?: string;
-
-        /**
-         * A function that receives the sql query, e.g. console.log
-         */
-        logging?: Function;
 
         /**
          * A hash of attributes to limit your index(Filtered Indexes - MSSQL & PostgreSQL only)
